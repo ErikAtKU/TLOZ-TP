@@ -42,11 +42,10 @@ def translate(name,text):
             im = Image.open(path+letters[k]+".bmp")
             (le,up,ri,bo) = im.getbbox()
             diagram.paste(im,(pos,i*40,pos+ri,(i+1)*40))
-            pos+=ri-3
-        pos = pos+3
+            pos+=ri+1
         if(pos > longest):
             longest = pos
-    diagram = diagram.crop((0,0,longest-3,len(line)*40))
-    diagram.save(path+name+".jpg")
+    diagram = diagram.crop((0,0,longest-1,len(line)*40))
+    diagram.save(path+name+".png")
     diagram.show()
 translate("lol","if you can read this, then you are@a massive nerd, and i love you.@long live the twilight princess!")

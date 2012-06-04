@@ -2,8 +2,6 @@ from PIL import ImageDraw, Image
 import glob, os, sys, re
 def invert(a):
     (m,n,x,y) = a.getbbox()
-    x-=3
-    a = a.crop((m,n,x,y))
     for i in range(0,int(x/2)):
         for j in range(0,y):
             pic1 = a.getpixel((i,j))
@@ -53,11 +51,10 @@ def translate(name,text):
             im = invert(im)
             (le,up,ri,bo) = im.getbbox()
             diagram.paste(im,(pos,i*40,pos+ri,(i+1)*40))
-            pos+=ri+3
-        pos = pos
+            pos+=ri+1
         if(pos > longest):
             longest = pos
-    diagram = diagram.crop((0,0,longest-3,len(line)*40))
-    diagram.save(path+name+".jpg")
+    diagram = diagram.crop((0,0,longest-1,len(line)*40))
+    diagram.save(path+name+".png")
     diagram.show()
-translate("lol","the legend of zelda: twilight princess@translating rocks!")
+translate("lol","the legend of zelda: twilight princess@sacred wolf transformation!")
